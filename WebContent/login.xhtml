@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Efetuar Login</title>
+
+	<style type="text/css">
+.divLogar {
+	margin-top: 200px;
+	width: auto;
+	height: auto;
+}
+
+.tableLogin {
+	margin-top: 200px;
+	width: 400px;
+	height: 400px;
+}
+
+.panelLogin {
+	margin-top: 200px;
+	width: 400px;
+	height: 150px;
+}
+
+.formLogin {
+	font-family: sans-serif;
+	font-size: 15px;
+}
+
+.usuario {
+	margin: 10px;
+}
+
+.senha {
+	margin: 10px;
+}
+
+.entrar {
+	margin: 20px;
+	margin-top: 10px;
+}
+
+</style>
+
+</h:head>
+<h:body style="background-image:url(./Imagens/fundo.jpg)">
+	<p:growl id="messages" />
+	<div id="divLogar">
+		<center>
+			<p:panel styleClass="panelLogin">
+				<h:form styleClass="formLogin">
+
+					<center>
+						<p:outputPanel>Usuário</p:outputPanel>
+						<p:inputText value="#{usuarioSecretariaMB.nomeUsuario}"
+							styleClass="usuario" />
+						<br />
+						<p:outputPanel>Senha </p:outputPanel>
+						<p:password value="#{usuarioSecretariaMB.senha}"
+							styleClass="senha" feedback="false" />
+						<br /> <br />
+						<p:commandButton value="Entrar"
+							action="#{usuarioSecretariaMB.efetuarLogin}" ajax="false"
+							id="entrar" />
+					</center>
+
+				</h:form>
+			</p:panel>
+		</center>
+	</div>
+</h:body>
+</html>

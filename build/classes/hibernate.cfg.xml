@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+		<!-- Configurações da conexão -->
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/tcc</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password"></property>
+
+		<!-- Dialeto utilizado -->
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Auto criação da base da dados -->
+		<property name="hbm2ddl.auto">validate</property>
+
+		<!-- Mostra a SQL sendo usada -->
+		<property name="show_sql">true</property>
+
+		<!-- Classes Anotadas -->
+		<mapping class="bean.Aluno"/>
+		<mapping class="bean.Ciclo"/>
+		<mapping class="bean.CicloDisciplina"/>
+		<mapping class="bean.Curso"/>
+		<mapping class="bean.Disciplina"/>
+		<mapping class="bean.Frequencia"/>
+		<mapping class="bean.Leciona"/>
+		<mapping class="bean.Matricula"/>
+		<mapping class="bean.Nota"/>
+		<mapping class="bean.Notificacao"/>
+		<mapping class="bean.Professor"/>
+		<mapping class="bean.TipoNota"/>
+		<mapping class="bean.UsuarioSecretaria"/>
+
+
+	</session-factory>
+</hibernate-configuration>

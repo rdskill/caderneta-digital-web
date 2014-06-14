@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<title>Sistema Academico Online</title>
+
+<style type="text/css">
+.menu {
+	height: 30px;
+	padding: 0px;
+	font-size: 15px;
+}
+
+.tabela {
+	font-size: 15px;
+}
+
+</style>
+</h:head>
+
+<h:body style="background-image:url(./Imagens/fundo.jpg)">
+
+</h:body>
+	<h:form>
+	
+	<p:growl id="messages" />
+	
+	<p:menubar styleClass="menu">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Alunos" action="#{alunoMB.cadastroAlunos}"
+					ajax="false" />
+				<p:menuitem value="Notifica��es"
+					action="#{notificacaoMB.cadastroNotificacoes}" ajax="false" />
+			</p:submenu>
+
+			<p:submenu label="Pesquisar" icon="ui-icon-search">
+				<p:menuitem value="Alunos" action="#{alunoMB.pesquisaAlunos}"
+					ajax="false" />
+				<p:menuitem value="Notifica��es"
+					action="#{notificacaoMB.pesquisaNotificacoes}" ajax="false" />
+			</p:submenu>
+
+			<p:menuitem value="Importar Dados" action="#" ajax="false" icon="ui-icon-document" />
+			<p:menuitem value="Sair" action="#{usuarioSecretariaMB.fecharSessao}" ajax= "false" icon="ui-icon-close" />
+		</p:menubar>
+		<br></br>
+		
+		<p:tabView id="tabView" styleClass="tabela">
+			<p:tab title="Importar Dados">
+			</p:tab>				
+		</p:tabView>
+	
+	</h:form>
+</html>

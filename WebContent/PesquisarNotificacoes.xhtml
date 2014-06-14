@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Sistema Academico Online</title>
+
+	<style type="text/css">
+.menu {
+	height: 30px;
+	padding: 0px;
+	font-size: 15px;
+}
+
+.tabela {
+	font-size: 15px;
+}
+
+table {
+	border: 0px;
+	border-color: transparent;
+	padding: 0px;
+}
+</style>
+</h:head>
+<h:body style="background-image:url(./Imagens/fundo.jpg)">
+	<h:form>
+
+		<p:growl id="messages" />
+		<p:menubar styleClass="menu">
+			<p:submenu label="Cadastros" icon="ui-icon-document">
+				<p:menuitem value="Alunos" action="#{alunoMB.cadastroAlunos}"
+					ajax="false" />
+				<p:menuitem value="Notificações"
+					action="#{notificacaoMB.cadastroNotificacoes}" ajax="false" />
+			</p:submenu>
+
+			<p:submenu label="Pesquisar" icon="ui-icon-search">
+				<p:menuitem value="Alunos" action="#{alunoMB.pesquisaAlunos}"
+					ajax="false" />
+				<p:menuitem value="Notificações"
+					action="#{notificacaoMB.pesquisaNotificacoes}" ajax="false" />
+			</p:submenu>
+
+
+
+			<p:menuitem value="Sair" action="#{usuarioSecretariaMB.fecharSessao}" ajax= "false" icon="ui-icon-close" />
+		</p:menubar>
+
+		<br></br>
+
+		<p:tabView id="tabView" styleClass="tabela">
+
+
+
+			<p:tab title="Pesquisar Notificações">
+
+
+				<p:selectOneRadio value="#{notificacaoMB.escolhaRadio}">
+					<f:selectItem itemLabel="Título" itemValue="1"  />
+					<f:selectItem itemLabel="Data Emissão" itemValue="2" />
+				</p:selectOneRadio>
+
+				<h:panelGrid columns="2">
+					<p:inputText size="50" value="#{notificacaoMB.pesquisaVar}" />
+					<p:commandButton value="Pesquisar" actionListener="#{notificacaoMB.pesquisa}" update="tabView, tabelaNotificacoes" />
+				</h:panelGrid>
+
+				<p:dataTable id="tabelaNotificacoes" rendered="#{notificacaoMB.exibirPesquisa == 1}"
+					value="#{notificacaoMB.listaNotificacaos}" var="n"
+					tableStyle="width:auto" paginator="true" rows="5">
+
+					<p:column headerText="Título" style="width:300px">
+						<h:outputText value="#{n.titulo}" />
+					</p:column>
+
+					<p:column headerText="Data Emissão" style="width:50px">
+						<h:outputText value="#{n.data}" />
+					</p:column>
+
+					<p:column headerText="Conteúdo" style="width:500px">
+						<h:outputText value="#{n.conteudo}" />
+					</p:column>
+
+					<p:column style="width:20px" headerText="Alterar">
+						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+							<p:commandButton id="btAlterar"
+								action="#{notificacaoMB.prepararAlteracao}" ajax="false"
+								icon="ui-icon-search" title="View">
+								<f:setPropertyActionListener value="#{n}"
+									target="#{notificacaoMB.notificacao}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</p:column>
+
+					<p:column style="width:20px" headerText="Excluir">
+						<h:panelGrid columns="3" styleClass="actions" cellpadding="2">
+							<p:commandButton id="btExcluir" onclick="dialogExclusao.show()"
+								icon="ui-icon-closethick" title="View">
+								<f:setPropertyActionListener value="#{n}"
+									target="#{notificacaoMB.notificacao}" />
+							</p:commandButton>
+						</h:panelGrid>
+					</p:column>
+
+				</p:dataTable>
+
+
+
+
+			</p:tab>
+		</p:tabView>
+
+		<p:dialog header="Deseja realmente fazer a exclusão da notificação?"
+			width="275" widgetVar="dialogExclusao">
+			<center>
+				<p:commandButton value="Sim"
+					actionListener="#{notificacaoMB.excluir}"
+					onsuccess="dialogExclusao.hide()" update="messages,tabView" />
+				<p:commandButton value="Não" onclick="dialogExclusao.hide()" />
+			</center>
+		</p:dialog>
+
+
+
+
+
+	</h:form>
+</h:body>
+
+</html>
